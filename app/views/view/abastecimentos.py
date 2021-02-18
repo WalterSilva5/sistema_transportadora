@@ -12,7 +12,8 @@ def abastecimentos(request):
 def abastecimentos_por_veiculo(request):
     #veiculos = list(Veiculo.objects.all().values())[:]
     veiculo = list(Veiculo.objects.filter(placa=request.POST["placa"]))[0]
-    return render(request, 'abastecimentos_por_veiculo.html', {'veiculo': veiculo})
+    abastecimentos = list(Abastecimento.objects.filter(veiculo_idveiculo=veiculo.id))
+    return render(request, 'abastecimentos_por_veiculo.html', {'veiculo': veiculo, 'abastecimentos': abastecimentos})
 
 def cadastrar_abastecimento(request):
     data = request.POST["data"]

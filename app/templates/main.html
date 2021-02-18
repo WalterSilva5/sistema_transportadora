@@ -1,42 +1,46 @@
 <!DOCTYPE html> {% load static %}
+<html lang="pt-br">
 
 <head>
-  <title>FRINEX BI</title>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}" />
-  <link rel="stylesheet" href="{% static 'app/css/style.css' %}" />
-
-  <script src="{% static 'app/js/jquery.js' %}"></script>
-  <script src="{% static 'app/js/googlecharts.js' %}"></script>
-  <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+    <title>FRINEX BI</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="pt-br">
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+    <script src="{% static 'app/js/jquery.js' %}"></script>
+    <script src="{% static 'app/js/googlecharts.js' %}"></script>
+    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 </head>
 
 <body class="text-center">
-  <div class="navbar navbar-dark bg-dark">
-    <h2 class="h2 text-danger font-weight-bold">NOVA FRINEZA</h2>
-
-    <!-- Sidebar -->
-    <nav id="sidebar">
-      <div>
-        <a href="{% url 'index' %}">
-          <button class="btn btn-outline-info">ANÁLISE GERAL</button>
-        </a>
-        <a href="{% url 'cadastros' %}">
-          <button class="btn btn-outline-info">CADASTROS</button>
-        </a> <a href="{% url 'abastecimentos' %}">
-          <button class="btn btn-outline-info">ABASTECIMENTOS</button>
-        </a> <a href="{% url 'cadastros' %}">
-          <button class="btn btn-outline-info">MANUTENÇÕES</button>
-        </a><a href="{% url 'cadastros' %}">
-          <button class="btn btn-outline-info">TROCAS DE OLEO</button>
-        </a>
-      </div>
-    </nav>
-  </div>
-
-  <!-- inicio corpo real do site -->
-  <div class="container border border-info rounded" style="min-height: 700px">
-    {% block content %} {% endblock %}
-  </div>
-  <!-- fim da div corpo real do site -->
+    <div class="navbar navbar-dark bg-dark">
+        <h2 class="h2 text-danger font-weight-bold">NOVA FRINEZA</h2>
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div>
+                <a href="{% url 'index' %}">
+                    <button class="btn btn-outline-info">ANÁLISE GERAL</button>
+                </a>
+                <a href="{% url 'cadastros' %}">
+                    <button class="btn btn-outline-info">CADASTROS</button>
+                </a>
+                <a href="{% url 'abastecimentos' %}">
+                    <button class="btn btn-outline-info">ABASTECIMENTOS</button>
+                </a>
+                <a href="{% url 'cadastros' %}">
+                    <button class="btn btn-outline-info">MANUTENÇÕES</button>
+                </a>
+                <a href="{% url 'cadastros' %}">
+                    <button class="btn btn-outline-info">TROCAS DE OLEO</button>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <!-- inicio corpo real do site -->
+    <div class="container border border-info rounded" style="min-height: 700px">
+        {% block content %} {% endblock %}
+    </div>
+    <!-- fim da div corpo real do site -->
 </body>
+
+</html>

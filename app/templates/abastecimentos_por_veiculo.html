@@ -13,14 +13,16 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">NOME</th>
+                    <th scope="col">VALOR</th>
+                    <th scope="col">DATA</th>
                 </tr>
             </thead>
             <tbody>
-                {% for servico in servicos%}
+                {% for abastecimento in abastecimentos%}
                 <tr>
-                    <th scope="row">{{servico.id}}</th>
-                    <td>{{servico.nome}}</td>
+                    <th scope="row">{{abastecimento.id}}</th>
+                    <td>{{abastecimento.valor}}</td>
+                    <td>{{abastecimento.data}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
