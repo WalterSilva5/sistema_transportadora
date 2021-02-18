@@ -1,0 +1,93 @@
+{% extends 'main.html' %} {% block content %}{% load static %}
+
+<h1 class="text-warning">CADASTROS</h1>
+<div id="div-veiculos" class="border border-danger rounded" style="margin-top: 10px;">
+  <div id="div-veiculos" class="border border-warning rounded">
+    <h2 class="h2 text-success">VEICULOS</h2>
+    <form action="{% url 'cadastrar_veiculo' %}" method="post" autocomplete="off">
+      {% csrf_token %}
+      <input type="text" name="placa" placeholder="PLACA" required class="form-control-lg">
+      <input type="text" name="modelo" placeholder="MODELO" class="form-control-lg">
+      <input type="text" name="ano" placeholder="ANO" class="form-control-lg">
+      <button type="submit" class="btn btn-success form-control-lg font-weight-bold">ADICIONAR</button>
+    </form>
+    <div id="veiculos-cadastrados" class="container border border-secondary">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">PLACA</th>
+            <th scope="col">MODELO</th>
+            <th scope="col">ANO</th>
+          </tr>
+        </thead>
+        <tbody id="tabela_veiculos">
+        {% for veiculo in veiculos%}
+          <tr>
+            <th scope="row">{{veiculo.id}}</th>
+            <td>{{veiculo.placa}}</td>
+            <td>{{veiculo.modelo}}</td>
+            <td>{{veiculo.ano}}</td>
+         </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="div-oleo" class="border border-warning rounded" style="margin-top: 10px;">
+    <h2 class="h2 text-success">OLEO</h2>
+    <form action="{% url 'cadastrar_oleo' %}" method="post" autocomplete="off">
+      {% csrf_token %}
+      <input type="text" name="nome" placeholder="NOME" required class="form-control-lg">
+      <input type="text" name="intervalo_de_troca_km" placeholder="INTERVALO DE TROCA (KM) " class="form-control-lg">
+      <button type="submit" class="btn btn-success form-control-lg font-weight-bold">ADICIONAR</button>
+    </form>
+    <div id="veiculos-cadastrados" class="container border border-secondary">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">TIPO</th>
+            <th scope="col">INTERVALO DE TROCA 'KM'</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for oleo in oleos%}
+          <tr>
+            <th scope="row">{{oleo.id}}</th>
+            <td>{{oleo.nome}}</td>
+            <td>{{oleo.intervalo_de_troca_km}}</td>
+         </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="div-servicos" class="border border-warning rounded" style="margin-top: 10px;">
+    <h2 class="h2 text-success">SERVIÇOS</h2>
+    <form action="{% url 'cadastrar_servico' %}" method="post" autocomplete="off">
+      {% csrf_token %}
+      <input type="text" name="nome" placeholder="TITULO" required class="form-control-lg">
+      <button type="submit" class="btn btn-success form-control-lg font-weight-bold">ADICIONAR</button>
+    </form>
+    <div id="veiculos-cadastrados" class="container border border-secondary">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NOME</th>
+          </tr>
+        </thead>
+        <tbody>
+       {% for servico in servicos%}
+          <tr>
+            <th scope="row">{{servico.id}}</th>
+            <td>{{servico.nome}}</td>
+         </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+.ws-box {
+    min-height: 600px;
+    margin-top: 50px;
+    box-shadow: 3px 3px 15px rgb(201, 120, 0);
+    background-color: black;
+    border: 2px solid rgb(231, 150, 0);
+    border-radius: 10px;
+}
+
+footer {
+    background-color: black
+}
+
+.ws-bt-painel {
+    min-width: 200px;
+    min-height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
