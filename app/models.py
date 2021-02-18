@@ -19,3 +19,8 @@ class ServicoEfetuado(models.Model):
     valor = models.FloatField('valor')
     servico_idservico = models.IntegerField('servico_idservico')
     veiculo_idveiculo = models.IntegerField('veiculo_idveiculo')
+    
+class Abastecimento(models.Model):
+    data = models.DateTimeField('data')
+    valor = models.FloatField('valor')
+    veiculo_idveiculo = models.IntegerField('veiculo_idveiculo')

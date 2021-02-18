@@ -1,0 +1,10 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+<h1>ABASTECIMENTOS</h1>
+{% for veiculo in veiculos %}
+<form action="abastecimentos/por_veiculo" method="post">
+    {% csrf_token %}
+    <input type="text" name="placa" value={{veiculo.placa}} hidden>
+    <input type="submit" class="btn btn-lg btn-outline-danger h2 font-weight-bold" value={{veiculo.placa}}>
+</form>
+{% endfor %} {% endblock %}
+<!--#{% url 'cadastrar_veiculo' %}-->
