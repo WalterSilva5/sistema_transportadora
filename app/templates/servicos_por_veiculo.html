@@ -1,9 +1,10 @@
 {% extends 'main.html' %} {% block content %} {% load static %}
 <div id="div-servicos" class="border border-warning rounded" style="margin-top: 10px;">
-    <h1>ABASTECIMENTOS POR VEICULO <text class="text-danger">{{veiculo.placa}}</text></h1>
-    <form action="{% url 'cadastrar_abastecimento' %}" method="post" autocomplete="off">
+    <h1>MANUTENÇÕES POR VEICULO <text class="text-danger">{{veiculo.placa}}</text></h1>
+    <form action="{% url 'cadastrar_servico' %}" method="post" autocomplete="off">
         {% csrf_token %}
         <input type="text" hidden name="id" value={{veiculo.id}}>
+        <input type="text" name="descricao" placeholder="DESCRICAO" required class="form-control-lg col-12">
         <input type="text" name="valor" placeholder="VALOR R$" required class="form-control-lg">
         <input type="date" name="data" required class="form-control-lg" placeholder="DATA">
         <button type="submit" class="btn btn-success form-control-lg font-weight-bold">ADICIONAR</button>
@@ -13,16 +14,18 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
+                    <th scope="col">DESCRICAO</th>
                     <th scope="col">VALOR</th>
                     <th scope="col">DATA</th>
                 </tr>
             </thead>
             <tbody>
-                {% for abastecimento in abastecimentos%}
+                {% for servico in servicos %}
                 <tr>
-                    <th scope="row">{{abastecimento.id}}</th>
-                    <td>{{abastecimento.valor}}</td>
-                    <td>{{abastecimento.data|date:'d/m/Y'}}</td>
+                    <th scope="row">{{servico.id}}</th>
+                    <td>{{servico.descricao}}</td>
+                    <td>{{servico.valor}}</td>
+                    <td>{{servico.data|date:'d/m/Y' }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

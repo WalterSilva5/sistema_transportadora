@@ -1,0 +1,16 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+<h1>TROCAS DE OLEO</h1>
+{% for veiculo in veiculos %}
+<div class="container col-12 border border-danger rounded" style="min-height:300px; margin-bottom:10px;">
+    <form action="#" method="post">
+        <div class="container col-12">
+            <h1 class="text-danger font-weight-bold col-8 float-left text-justify">
+                Veiculo: {{veiculo.placa}}
+            </h1>
+            <input type="text" value={{veiculo.id}} name="id" hidden>
+            <button class="btn btn-success form-control-lg col-4 float-left">ADICIONAR NOVA</button>
+        </div>
+    </form>
+</div>
+{% endfor %} {% endblock %}
+<!--#{% url 'cadastrar_veiculo' %}-->
