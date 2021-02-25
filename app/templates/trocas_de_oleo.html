@@ -1,7 +1,7 @@
 {% extends 'main.html' %} {% block content %} {% load static %}
 <h1>TROCAS DE OLEO</h1>
 {% for veiculo in veiculos %}
-<div class="container col-12 border border-danger rounded" style="min-height:300px; margin-bottom:10px;">
+<div class="container col-12 border border-danger rounded" style="min-height:100px; margin-bottom:10px;">
     <form action="trocas_de_oleo/nova_troca_de_oleo" method="post">
         {% csrf_token %}
         <div class="container col-12">
@@ -9,7 +9,7 @@
                 Veiculo: {{veiculo.placa}}
             </h1>
             <input type="text" value={{veiculo.id}} name="id" hidden>
-            <button class="btn btn-success form-control-lg col-4 float-left">ADICIONAR NOVA</button>
+            <button class="btn btn-success form-control-lg col-4 float-left">ALTERAR</button>
         </div>
     </form>
 </div>

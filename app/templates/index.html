@@ -1,3 +1,71 @@
 {% extends 'main.html' %} {% block content %} {% load static %}
 <h1 class="font-weight-bold">TRANSPORTADORA FRINEX</h1>
-{% endblock %}
+{% for registro in registros %}
+<div class="rounded" style="margin-bottom: 40px; border: 5px solid blue;">
+    <h1 class="h1 font-weight-bold text-justify">{{registro.veiculo.placa}}</h1>
+    <div class="border border-danger rounded">
+        <h3>ABASTECIMENTOS</h3>
+        <table class="table table-hover table-bordered table-striped ">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">VALOR</th>
+                    <th scope="col">DATA</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for abastecimento in registro.abastecimentos %}
+                <tr>
+                    <td scope="row"> {{abastecimento.valor}}</td>
+                    <td scope="row"> {{abastecimento.data|date:'d/m/Y'}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="border border-warning rounded">
+        <h3>MANUTENCOES</h3>
+        <table class="table table-hover table-bordered table-striped ">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">VALOR</th>
+                    <th scope="col">DATA</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for servico in registro.servicos %}
+                <tr>
+                    <td scope="row"> {{servico.valor}}</td>
+                    <td scope="row"> {{servico.data|date:'d/m/Y'}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="border border-warning rounded">
+        <h3>TROCAS DE OLEO</h3>
+        <table class="table table-hover table-bordered table-striped ">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">VALOR</th>
+                    <th scope="col">DATA</th>
+                    <th scope="col">KM ODOMETRO</th>
+                    <th scope="col">PROXMA TROCA KM</th>
+                    <th scope="col">OLEO</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for troca in registro.trocas_de_oleo %}
+                <tr>
+                    <td>{{troca.valor}}</td>
+                    <td>{{troca.data|date:'d/m/Y'}}</td>
+                    <td>{{troca.km_odometro}}</td>
+                    <td>{{troca.proxkm}}</td>
+                    <td>{{troca.oleo}}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endfor %} {% endblock %}
