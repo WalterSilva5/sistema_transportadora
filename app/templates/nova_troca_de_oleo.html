@@ -1,0 +1,54 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+<div id="div-trocas-de-oleo" class="border border-warning rounded" style="margin-top: 10px;">
+    <h1>TROCAS DE OLEO DO VEICULO: <text class="text-danger">{{veiculo.placa}}</text></h1>
+    <form action="{% url 'cadastrar_troca_de_oleo' %}" method="post" autocomplete="off" class="border border-danger rounded">
+        {% csrf_token %}
+        <input type="text" hidden name="veiculo_idveiculo" value={{veiculo.id}}>
+        <input type="text" name="valor" placeholder="VALOR R$" required class="form-control-lg col-5">
+        <input type="text" name="km_odometro" quired class="form-control-lg col-5" placeholder="KM ODOMETRO">
+        <select name="oleo_idoleo" required class="form-control-lg col-4 border border-dark">
+        
+        {% for oleo in oleos %}
+            <option value="{{oleo.id}}">{{oleo.nome}}</option>
+        {% endfor %}
+            
+        </select>
+        <input type="date" name="data" required class="form-control-lg" placeholder="DATA">
+        <button type="submit" class="btn btn-success form-control-lg font-weight-bold">ADICIONAR</button>
+    </form>
+    <div id="trocas_de_oleo" class="container border border-secondary">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">VALOR</th>
+                    <th scope="col">DATA</th>
+                    <th scope="col">KM ODOMETRO</th>
+                    <th scope="col">PROXMA TROCA KM</th>
+                    <th scope="col">OLEO</th>
+                    <th scope="col" style="width:50px;">APAGAR</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for troca in trocas %}
+                <tr>
+                    <td>{{troca.valor}}</td>
+                    <td>{{troca.data|date:'d/m/Y'}}</td>
+                    <td>{{troca.km_odometro}}</td>
+                    <td>{{troca.proxkm}}</td>
+                    <td>{{troca.oleo}}</td>
+                    <td>
+                        <form action="/trocas_de_oleo/apagar_troca_de_oleo" method="post">
+                            {% csrf_token %}
+                            <input type="checkbox" required> confirma
+                            <input type="text" name="trocaid" value="{{troca.id}}" hidden>
+                            <button type="submit " class="btn btn-danger ">APAGAR</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+<!--#{% url 'cadastrar_veiculo' %}-->

@@ -14,19 +14,26 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">PLACA</th>
                         <th scope="col">MODELO</th>
                         <th scope="col">ANO</th>
+                        <th scope="col" style="width: 50px;">APAGAR</th>
                     </tr>
                 </thead>
                 <tbody id="tabela_veiculos">
                     {% for veiculo in veiculos%}
                     <tr>
-                        <th scope="row">{{veiculo.id}}</th>
                         <td>{{veiculo.placa}}</td>
                         <td>{{veiculo.modelo}}</td>
                         <td>{{veiculo.ano}}</td>
+                        <form action="/cadastros/apagar_veiculo" method="post">
+                            {% csrf_token %}
+                            <td>
+                                <input type="text" name="veiculoid" value="{{veiculo.id}}" hidden>
+                                <input type="checkbox" required> confirma
+                                <button type="submit" class="btn btn-danger">APAGAR</button>
+                            </td>
+                        </form>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -48,6 +55,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">TIPO</th>
                         <th scope="col">INTERVALO DE TROCA 'KM'</th>
+                        <!-- <th scope="col" style="width: 50px;">APAGAR</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -56,6 +64,14 @@
                         <th scope="row">{{oleo.id}}</th>
                         <td>{{oleo.nome}}</td>
                         <td>{{oleo.intervalo_de_troca_km}}</td>
+                        <!--<form action="/cadastros/apagar_oleo" method="post">
+                            {% csrf_token %}
+                            <td>
+                                <input type="text" name="oleoid" value="{{oleo.id}}" hidden>
+                                <input type="checkbox" required> confirma
+                                <button type="submit" class="btn btn-danger">APAGAR</button>
+                            </td>
+                        </form>-->
                     </tr>
                     {% endfor %}
                 </tbody>

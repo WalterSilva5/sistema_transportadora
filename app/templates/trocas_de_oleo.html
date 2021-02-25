@@ -2,7 +2,8 @@
 <h1>TROCAS DE OLEO</h1>
 {% for veiculo in veiculos %}
 <div class="container col-12 border border-danger rounded" style="min-height:300px; margin-bottom:10px;">
-    <form action="#" method="post">
+    <form action="trocas_de_oleo/nova_troca_de_oleo" method="post">
+        {% csrf_token %}
         <div class="container col-12">
             <h1 class="text-danger font-weight-bold col-8 float-left text-justify">
                 Veiculo: {{veiculo.placa}}

@@ -20,6 +20,9 @@ def cadastrar_veiculo(request):
     veiculo = Veiculo(placa=placa, modelo=modelo, ano=ano)
     veiculo.save()
     return redirect('/cadastros')
+def apagar_veiculo(request):
+    veiculo = Veiculo.objects.filter(id = request.POST["veiculoid"]).delete()
+    return redirect('/cadastros')
 
 def cadastrar_oleo(request):
     nome = request.POST['nome'].upper()
@@ -28,6 +31,10 @@ def cadastrar_oleo(request):
     oleo.save()
     return redirect('/cadastros')
 
+def apagar_oleo(request):
+    oleo = Oleo.objects.filter(id = request.POST["oleoid"]).delete()
+    return redirect('/cadastros')
+    
 def cadastrar_servico(request):
     nome = request.POST['nome'].upper()
     servico = Servico(nome=nome)
