@@ -18,6 +18,7 @@ urlpatterns = [
          name="abastecimentos_por_veiculo"),
     path('abastecimentos/cadastrar_abastecimento',
          cadastrar_abastecimento, name="cadastrar_abastecimento"),
+    path('abastecimentos/apagar_abastecimento', apagar_abastecimento, name="apagar_abastecimento"),
     path('servicos', servicos, name="servicos"),
     path('servicos/por_veiculo', servicos_por_veiculo,
          name="servicos_por_veiculo"),

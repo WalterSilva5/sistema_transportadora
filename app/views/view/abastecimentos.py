@@ -21,4 +21,14 @@ def cadastrar_abastecimento(request):
     veiculo_idveiculo = request.POST["id"]
     abastecimento = Abastecimento(data=data, valor=valor, veiculo_idveiculo=veiculo_idveiculo)
     abastecimento.save()
-    return redirect('/')
+    veiculo = list(Veiculo.objects.filter(id=request.POST["id"]))[0]
+    abastecimentos = list(Abastecimento.objects.filter(veiculo_idveiculo=veiculo.id).order_by('data'))
+    return render(request, 'abastecimentos_por_veiculo.html', {'veiculo': veiculo, 'abastecimentos': abastecimentos})
+
+
+
+def apagar_abastecimento(request):
+    Abastecimento.objects.filter(id=request.POST["abastecimentoid"]).delete()
+    veiculo = list(Veiculo.objects.filter(placa=request.POST["veiculoplaca"]))[0]
+    abastecimentos = list(Abastecimento.objects.filter(veiculo_idveiculo=veiculo.id).order_by('data'))
+    return render(request, 'abastecimentos_por_veiculo.html', {'veiculo': veiculo, 'abastecimentos': abastecimentos})

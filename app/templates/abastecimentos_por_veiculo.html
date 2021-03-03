@@ -23,8 +23,10 @@
                     <td>{{abastecimento.valor}}</td>
                     <td>{{abastecimento.data|date:'d/m/Y'}}</td>
                     <td>
-                        <form action="#">
-                            <input type="text" hidden value="{{abastecimento.id}}">
+                        <form action="{% url 'apagar_abastecimento' %}" method="post">
+                            {% csrf_token %}
+                            <input type="text" name="veiculoplaca" value="{{veiculo.placa}}">
+                            <input type="text" hidden name="abastecimentoid" value="{{abastecimento.id}}">
                             <button class="btn btn-danger">APAGAR</button></form>
                     </td>
                 </tr>
