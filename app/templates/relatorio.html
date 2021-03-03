@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+    <script src="{% static 'app/js/jquery.js' %}"></script>
+    <script src="{% static 'app/js/googlecharts.js' %}"></script>
+    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+    <title>RELATORIO</title>
+</head>
+
+<body>
+    <div class="rounded" style="margin-bottom: 40px; border: 1px solid blue;">
+        <h1 class="h1 font-weight-bold text-justify col-8 float-left">
+            VEICULO:
+            <text class="text-danger">{{registro.veiculo.placa}}</text>
+        </h1>
+        <form>
+            <input type="button" class="btn btn-lg btn-success" value="Imprimir" onClick="window.print()">
+        </form>
+        <br>
+        <div class="border border-danger rounded">
+            <h3>ABASTECIMENTOS</h3>
+            <table class="table table-hover table-bordered table-striped ">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">VALOR</th>
+                        <th scope="col">DATA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for abastecimento in registro.abastecimentos %}
+                    <tr>
+                        <td scope="row"> {{abastecimento.valor}}</td>
+                        <td scope="row"> {{abastecimento.data|date:'d/m/Y'}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="border border-warning rounded">
+            <h3>MANUTENÇÕES</h3>
+            <table class="table table-hover table-bordered table-striped ">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" style="width:400px;">VALOR</th>
+                        <th scope="col">DATA</th>
+                    </tr>
+                </thead>
+            </table>
+            {% for servico in registro.servicos %}
+            <table class="table table-hover table-bordered table-striped ">
+                {{servico.descricao}}
+                <tr>
+                    <td style="width:400px;"> {{servico.valor}}</td>
+                    <td> {{servico.data|date:'d/m/Y'}}</td>
+                </tr>
+            </table>
+            {% endfor %}
+        </div>
+        <div class="border border-warning rounded">
+            <h3>TROCAS DE ÓLEO</h3>
+            <table class="table table-hover table-bordered table-striped ">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">VALOR</th>
+                        <th scope="col">DATA</th>
+                        <th scope="col">KM ODOMETRO</th>
+                        <th scope="col">PROXMA TROCA KM</th>
+                        <th scope="col">ÓLEO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for troca in registro.trocas_de_oleo %}
+                    <tr>
+                        <td>{{troca.valor}}</td>
+                        <td>{{troca.data|date:'d/m/Y'}}</td>
+                        <td>{{troca.km_odometro}}</td>
+                        <td>{{troca.proxkm}}</td>
+                        <td>{{troca.oleo}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
