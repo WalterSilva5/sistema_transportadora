@@ -28,4 +28,15 @@ def cadastrar_servico(request):
     servico = Servico(descricao=descricao, data=data,
                       valor=valor, veiculo_idveiculo=veiculo_idveiculo)
     servico.save()
-    return redirect('/')
+    veiculo = list(Veiculo.objects.filter(id=veiculo_idveiculo))[0]
+    servicos = list(Servico.objects.filter(
+        veiculo_idveiculo=veiculo.id).order_by('data'))
+    return render(request, 'servicos_por_veiculo.html', {'veiculo': veiculo, 'servicos': servicos})
+
+
+def apagar_servico(request):
+    Servico.objects.filter(id=request.POST["servicoid"]).delete()
+    veiculo = list(Veiculo.objects.filter(placa=request.POST["veiculoplaca"]))[0]
+    servicos = list(Servico.objects.filter(
+        veiculo_idveiculo=veiculo.id).order_by('data'))
+    return render(request, 'servicos_por_veiculo.html', {'veiculo': veiculo, 'servicos': servicos})

@@ -13,19 +13,26 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">DESCRICAO</th>
+                    <th class="col-4">DESCRICAO</th>
                     <th scope="col">VALOR</th>
                     <th scope="col">DATA</th>
+                    <th scope="col">APAGAR</th>
                 </tr>
             </thead>
             <tbody>
                 {% for servico in servicos %}
                 <tr>
-                    <th scope="row">{{servico.id}}</th>
                     <td>{{servico.descricao}}</td>
                     <td>{{servico.valor}}</td>
                     <td>{{servico.data|date:'d/m/Y' }}</td>
+                    <td>
+                        <form action="{% url 'apagar_servico' %}" method="post">
+                            {% csrf_token %}
+                            <input type="checkbox" class="col-sm-1" required> confirma
+                            <input hidden type="text" name="veiculoplaca" value="{{veiculo.placa}}">
+                            <input hidden type="text" hidden name="servicoid" value="{{servico.id}}">
+                            <button class="btn btn-danger">APAGAR</button></form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

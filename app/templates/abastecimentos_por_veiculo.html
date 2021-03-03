@@ -14,7 +14,7 @@
                 <tr>
                     <th scope="col">VALOR</th>
                     <th scope="col">DATA</th>
-                    <th scope="col">APAGAR</th>
+                    <th>APAGAR</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +25,9 @@
                     <td>
                         <form action="{% url 'apagar_abastecimento' %}" method="post">
                             {% csrf_token %}
-                            <input type="text" name="veiculoplaca" value="{{veiculo.placa}}">
+                            <input type="checkbox" class="col-sm-1" required> confirma
+
+                            <input type="text" hidden name="veiculoplaca" value="{{veiculo.placa}}">
                             <input type="text" hidden name="abastecimentoid" value="{{abastecimento.id}}">
                             <button class="btn btn-danger">APAGAR</button></form>
                     </td>
