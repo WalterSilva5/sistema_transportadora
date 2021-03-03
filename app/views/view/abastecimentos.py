@@ -18,6 +18,8 @@ def abastecimentos_por_veiculo(request):
 def cadastrar_abastecimento(request):
     data = request.POST["data"]
     valor = request.POST["valor"]
+    valor = valor.replace(',', '.')
+    
     veiculo_idveiculo = request.POST["id"]
     abastecimento = Abastecimento(data=data, valor=valor, veiculo_idveiculo=veiculo_idveiculo)
     abastecimento.save()
